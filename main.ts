@@ -41,12 +41,12 @@ let userAnswer = await inquirer.prompt([
 
 let fromAmount = currency[userAnswer.from];
 let toAmount = currency[userAnswer.to];
-let amount = userAnswer.amount;
+let amount: number = userAnswer.amount;
 let baseAmount = amount / fromAmount;
 let convertedAmount = baseAmount * toAmount;
 
 // console.log(convertedAmount.toFixed(2));
-
+if(userAnswer.amount === amount){
 switch (userAnswer.to) {
   case "USD":
     console.log(
@@ -83,4 +83,8 @@ switch (userAnswer.to) {
       chalk.green(`\t\n**********     ${convertedAmount.toFixed(2)}ALL     **********\n\t`)
     );
     break;
+}
+} else {
+  console.log(chalk.red.bold('Not a number! Please Enter a valid amount'));
+  
 }
